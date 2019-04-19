@@ -3,7 +3,7 @@
 module.exports = {
   englishToPigLatin: function(word) {
     //word verification
-    if (typeof word !== 'string' || Number(word) / 2) {
+    if (typeof word !== 'string') {
       console.log('Please enter a valid word.');
       return false;
     }
@@ -33,7 +33,7 @@ module.exports = {
 
   pigLatinToEnglish: function(word) {
     //word verification
-    if (typeof word !== 'string' || Number(word) / 2) {
+    if (typeof word !== 'string') {
       console.log('Please enter a valid word.');
       return false;
     }
