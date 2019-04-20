@@ -18,6 +18,11 @@ describe ('pig-latin-translator', function (){
     translatedWord.should.be.equal('apples-ay');
   });
 
+  it('should translate sentences', function() {
+    let translatedWord = englishToPigLatin('pikachu, i choose you!');
+    translatedWord.should.be.equal('ikachu-pay, i-ay oose-chay ou-yay!');
+  });
+
   it('should translate words starting with consonates', function() {
     let translatedWord = pigLatinToEnglish('eow-may');
     translatedWord.should.be.equal('meow');

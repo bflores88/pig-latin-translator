@@ -1,0 +1,26 @@
+{
+  "name": "pig-latin-translator",
+  "version": "1.0.0",
+  "description": "An exercise",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --bail --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bflores88/pig-latin-translator"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bflores88/pig-latin-translator"
+  },
+  "homepage": "https://github.com/bflores88/pig-latin-translator",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.5"
+  }
+}

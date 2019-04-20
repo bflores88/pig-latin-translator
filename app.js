@@ -1,34 +1,74 @@
 'use strict';
 
 module.exports = {
-  englishToPigLatin: function(word) {
+  englishToPigLatin: function(string) {
     //word verification
-    if (typeof word !== 'string') {
+    if (typeof string !== 'string') {
       console.log('Please enter a valid word.');
       return false;
     }
 
-    //multi word verification
-    if (word.split('').indexOf(' ') !== -1) {
-      console.log('Please input a single word.');
-      return false;
+    let vowels = 'aeiouAEIOU';
+    let punctuation = ';:!.,';
+
+    let strArr = string.split(' ');
+    let resultArr = [];
+
+    for (let i = 0; i < strArr.length; i++) {
+      let word = strArr[i];
+      let spliceLength = 0;
+      let pigLatin = '';
+      let addPunctuation = '';
+
+      let findPunctuation = word[word.length - 1];
+      if (punctuation.indexOf(findPunctuation) !== -1) {
+        addPunctuation = findPunctuation;
+      }
+
+      for (let j = 0; j < word.length; j++) {
+        if (vowels.indexOf(word[j]) >= 0) {
+          break;
+        } else {
+          spliceLength++;
+        }
+      }
+
+      if (spliceLength === 0) {
+        pigLatin = word.concat('-ay');
+        resultArr.push(pigLatin);
+      } else {
+        let spliceWord = word
+          .split('')
+          .slice(0, spliceLength)
+          .join('');
+
+        if (addPunctuation === '') {
+          pigLatin = word
+            .split('')
+            .slice(spliceLength, word.length)
+            .join('')
+            .concat('-')
+            .concat(spliceWord)
+            .concat('ay');
+          resultArr.push(pigLatin);
+        } else {
+          pigLatin = word
+            .split('')
+            .slice(spliceLength, word.length - 1)
+            .join('')
+            .concat('-')
+            .concat(spliceWord)
+            .concat('ay')
+            .concat(addPunctuation);
+          resultArr.push(pigLatin);
+        }
+      }
     }
 
-    let firstLetterVowel = 'AEIOUaeiou';
-    let appendage = 'ay';
-    let firstLetter = word.slice(0, 1);
+    let result = resultArr.join(' ');
+    console.log(result);
 
-    if (firstLetterVowel.indexOf(firstLetter) === -1) {
-      let pigLatin = word
-        .split('')
-        .splice(1, word.length)
-        .join('')
-        .concat(`-${firstLetter}${appendage}`);
-      return pigLatin;
-    } else {
-      let pigLatin = word.concat(`-${appendage}`);
-      return pigLatin;
-    }
+    return result;
   },
 
   pigLatinToEnglish: function(word) {
