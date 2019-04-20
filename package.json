@@ -21,6 +21,6 @@
   "homepage": "https://github.com/bflores88/pig-latin-translator",
   "devDependencies": {
     "chai": "^2.3.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.5.3"
   }
 }
