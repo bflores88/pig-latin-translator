@@ -71,36 +71,41 @@ module.exports = {
     return result;
   },
 
-  pigLatinToEnglish: function(word) {
+  pigLatinToEnglish: function(string) {
     //word verification
-    if (typeof word !== 'string') {
-      console.log('Please enter a valid word.');
+    if (typeof string !== 'string') {
       return false;
     }
 
-    //multi word verification
-    if (word.split('').indexOf(' ') !== -1) {
-      console.log('Please input a single word.');
-      return false;
+    let strArr = string.split(' ');
+    let punctuation = ';:!.,';
+    let resultArr = [];
+
+    for (let i = 0; i < strArr.length; i++) {
+      let currentWord = strArr[i];
+      let pigLatinIndex = currentWord.indexOf('-');
+      let englishPrefix = '';
+      let englishSuffix = currentWord.slice(0, pigLatinIndex);
+      let pigLatinWork = currentWord.slice(pigLatinIndex, currentWord.length);
+      let addPunctuation = '';
+
+      let lastLetter = pigLatinWork[pigLatinWork.length - 1];
+      if (punctuation.indexOf(lastLetter) !== -1) {
+        addPunctuation = lastLetter;
+      }
+
+      for (let j = 1; j < pigLatinWork.length; j++) {
+        if (pigLatinWork[j] === 'a') {
+          break;
+        } else {
+          englishPrefix += pigLatinWork[j];
+        }
+      }
+
+      resultArr.push(englishPrefix.concat(englishSuffix).concat(addPunctuation));
     }
 
-    //check last three letters of word
-    let lastThree = word.length - 3;
-    let lastThreeLetters = word.split('').splice(lastThree, 3);
-
-    if (lastThreeLetters[0] !== '-') {
-      let firstPart = word
-        .split('')
-        .splice(0, word.length - 4)
-        .join('');
-      let englishWord = lastThreeLetters[0] + firstPart;
-      return englishWord;
-    } else {
-      let firstPart = word
-        .split('')
-        .splice(0, lastThree)
-        .join('');
-      return firstPart;
-    }
+    let result = resultArr.join(' ');
+    return result;
   },
 };
