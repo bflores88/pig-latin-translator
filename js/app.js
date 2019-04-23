@@ -66,8 +66,6 @@ module.exports = {
     }
 
     let result = resultArr.join(' ');
-    console.log(result);
-
     return result;
   },
 
